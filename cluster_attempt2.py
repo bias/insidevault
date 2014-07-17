@@ -45,8 +45,6 @@ tags = fdist.keys()[:300]
 #
 # generate similarity matrix 
 
-# compute frequency of (i,j) 
-
 # need to clean up the individual lines (could have initially done this on a line by line basis)
 clean_text = []
 for line in text:
@@ -56,15 +54,29 @@ for line in text:
     for word_ in stopless_:
         singles_.append(stemmer.stem(word_))
     clean_text.append(" ".join(singles_))
-print len(clean_text)
+
+# compute frequency of (i,j) 
+freq = {}
+for tagi in tags:
+    freq[tagi] = {}
+    for tagj in tags:
+        freq[tagi][tagj] = 0
+for line in clean_text:
+    for tagi in tags:
+        for tagj in tags:
+            if tagi in line and tagj in line:
+                freq[tagi][tagj] += 1
+
 
 
 # (i,j) = frequency of (i,j)/frequency of (i)
 matrix = {}
-#for i, tagi in enumerate(tags):
-#    matrix[i] = {}
-#    for j, tagj in enumerate(tags):
-#        matrix[i][j] = 
+for tagi in tags:
+    matrix[tagi] = {}
+    for tagj in tags:
+        matrix[tagi][tagj] = freq[tagi][tagj]
+
+# XXX this is where I stopped
 
 #
 # same-size k-means variation
