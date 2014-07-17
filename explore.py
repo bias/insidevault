@@ -29,8 +29,10 @@ import re
 #      looking at the corpus it seems to be entirely about post secondary education (the below analyses confirm this)
 file_name = "IV6 - RAW keywords.txt"
 
+text = ""
 with open(file_name) as f:
-    text = f.readlines()
+    for line in f:
+        text += line
 
 #
 # tokenize all words (not just clusters)
