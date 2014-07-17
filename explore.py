@@ -1,11 +1,20 @@
 #!/usr/bin/env python
 
+# *******************************************
+# Problem Description
+# *******************************************
 # Given the file of keywords (each row is a keyword, even if it contains more than one individual word), 
 # write a program to group these keywords into clusters of approximately 30 semantically relevant keywords 
 # (each cluster does not have to contain exactly 30 keywords). You can write the code in any language that 
 # you are comfortable with. Please include the resulting clusters in your submission.
+# *******************************************
 
+# NOTE this file is for exploratory work
+
+
+# NOTE We'll use NLTK for exploration and possibly for data clustering
 from nltk import *
+
 import re
 
 
@@ -20,11 +29,8 @@ import re
 #      looking at the corpus it seems to be entirely about post secondary education (the below analyses confirm this)
 file_name = "IV6 - RAW keywords.txt"
 
-# get frequency dist on all text
-text = ""
 with open(file_name) as f:
-    for line in f:
-        text += line
+    text = f.readlines()
 
 #
 # tokenize all words (not just clusters)
@@ -63,5 +69,3 @@ fdist = FreqDist(singles)
 print fdist.N(), fdist.B()
 # -> 171684
 # -> 6246
-
-
